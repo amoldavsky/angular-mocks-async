@@ -13,13 +13,10 @@ TODO: add throgh bower
 
 ## Usage
 
-Add a `<script>` to your `index.html`:
-
 ```html
 <script src="angular-mocks.js"></script>
 <script src="angular-mocke-async.js"></script>
 ```
-The code adds a custom decorator under angular.mock.$HttpBackendAsyncDecorator which holds other decorators such as the ngMockE2E decorator.
 
 The decorator exposes a new API
 ```javascript
@@ -56,8 +53,13 @@ Here is an example for an HTTP GET
 	}]);
 }(angular);
 ```
-
 You may use this API the same way for POST, PUT, UPDATE, and DELETE.
+
+
+## Details
+
+The code adds a custom decorator function to the existing angular mock namespace which already hold similar decorator functions - angular.mock.$HttpBackendAsyncDecorator.
+
 
 ## License
 MIT
