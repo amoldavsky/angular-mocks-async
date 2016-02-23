@@ -31,23 +31,27 @@ Here is an example for an HTTP GET
 	var app = ng.module('myApp', ['ngMockE2E', 'ngMockE2EAsync'])
 	
 	app.run( [ '$httpBackend', function( $httpBackend ) {
-	$httpBackend.whenAsync(
-				'GET',
-				new RegExp( 'http://api.example.com/user/.+$' )
-	).respond( function( method, url, data ) {
-			
-			var re = /.*\/user\/(\w+)/;
-			var userId = parseInt(url.replace(re, '$1'), 10);
-			
-			var response = $q.defer();
-			
-			setTimeout( function() {
 
-				response.resolve();
-
-			}, 1000 );
+		$httpBackend.whenAsync(
+					'GET',
+					new RegExp( 'http://api.example.com/user/.+$' )
+		).respond( function( method, url, data, config ) {
 			
-			return response.promise;
+				var re = /.*\/user\/(\w+)/;
+				var userId = parseInt(url.replace(re, '$1'), 10);
+			
+				var response = $q.defer();
+			
+				setTimeout( function() {
+
+					var data = {
+						userId: userId
+					};
+					response.resolve( [ 200, "mock response", data ] );
+
+				}, 1000 );
+			
+				return response.promise;
 			
 		});
 	}]);
