@@ -1,0 +1,35 @@
+{
+  "name": "angular-mocks-async",
+  "description": "AngularJS module to mock async HTTP",
+  "version": "0.0.1",
+  "author": "Assaf Moldavsky",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "mock",
+    "http",
+    "ngMockE2E",
+    "ngMock"
+  ],
+  "scripts": {
+    "karma": "./node_modules/karma/bin/karma start",
+    "start": "nodemon server/ --exec babel-node",
+    "build": "babel server -d dist",
+    "lint": "eslint ./server",
+    "test": "npm run lint && npm run mocha",
+    "prod": "npm run build && node dist/",
+    "mocha": "./node_modules/.bin/mocha --compilers js:babel-register --require babel-polyfill"
+  },
+  "dependencies": {
+    "karma": "^1.3.0 ",
+    "jasmine-core": "^2.5.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1"
+  },
+  "devDependencies": {
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2"
+  }
+}
