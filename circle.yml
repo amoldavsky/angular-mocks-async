@@ -12,4 +12,3 @@ dependencies:
 test:
     override:
       - npm install
-      - karma start
