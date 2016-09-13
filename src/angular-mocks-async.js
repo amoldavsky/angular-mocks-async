@@ -20,9 +20,9 @@
 (function( ng ) {
 	
 	var httpMock = ng.module( "ngMockE2EAsync", [ 'ngMockE2E' ] );
-	
-	angular.mock.$HttpBackendAsyncDecorator = [ '$rootScope', '$q', '$delegate', '$browser', createHttpBackendAsyncMock ];
-	
+
+	ng.mock.$HttpBackendAsyncDecorator = [ '$rootScope', '$q', '$delegate', '$browser', createHttpBackendAsyncMock ];
+
 	function createHttpBackendAsyncMock( $rootScope, $q, $delegate, $browser ) {
 		
 		var definnitionsAsync = [];
