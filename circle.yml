@@ -12,4 +12,5 @@ dependencies:
 test:
     override:
       - npm install
-      - nohup bash -c "karma start &"
+      #- nohup bash -c "karma start &"
+      - bash -c "karma start"
