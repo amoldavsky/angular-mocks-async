@@ -1,6 +1,8 @@
 # angular-mocks-async
 AngularJS ngMockE2E Async
 
+[![Build Status](https://circleci.com/gh/amoldavsky/angular-mocks-async/tree/master.svg?style=svg)](https://circleci.com/gh/amoldavsky/angular-mocks-async)
+
 An abstraction on top of ngMockE2E to support async calls using promises. 
 
 If you need to make an async operation ( such as working with WebSQL / IndexedDB ) the orignial ngMockE2E will fall through and you will never have the chance to respond with your own response.
