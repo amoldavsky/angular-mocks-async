@@ -437,7 +437,7 @@
                     }, 1000 );
 
                     return response.promise;
-                    
+
                 });
 
                 // test the mock

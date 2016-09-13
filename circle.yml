@@ -1,0 +1,5 @@
+dependencies:
+  pre:
+   - npm install -g karma
+ cache_directories:
+    - ~/nvm
