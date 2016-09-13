@@ -16,4 +16,4 @@ test:
       #- nohup bash -c "karma start &"
       #- bash -c "karma start"
       #- bash -c "./node_modules/karma-cli/bin/karma start &"
-      - ./node_modules/karma-cli/bin/karma start karma.conf.js
+      - ./node_modules/karma-cli/bin/karma start karma.conf.js --single-run
