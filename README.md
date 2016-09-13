@@ -1,7 +1,7 @@
 # angular-mocks-async
 AngularJS ngMockE2E Async
 
-[![Build Status](https://circleci.com/gh/amoldavsky/angular-mocks-async/tree/master.svg?style=svg)](https://circleci.com/gh/amoldavsky/angular-mocks-async)
+ Angular 1.5.8 [![CircleCI](https://circleci.com/gh/amoldavsky/angular-mocks-async/tree/master.svg?style=shield)](https://circleci.com/gh/amoldavsky/angular-mocks-async)
 
 An abstraction on top of ngMockE2E to support async calls using promises. 
 
