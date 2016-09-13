@@ -10,5 +10,8 @@ dependencies:
       - ~/nvm
 
 test:
+    pre:
+      - nohup bash -c "karma start &"
     override:
       - npm install
+      - karma run
