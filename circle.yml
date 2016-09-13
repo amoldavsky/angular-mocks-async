@@ -1,6 +1,12 @@
+machine:
+  node:
+    version:
+      6.3.0
 test:
   dependencies:
     pre:
-     - npm install -g karma
+      - npm install -g karma
+    override:
+      - npm install
    cache_directories:
       - ~/nvm
