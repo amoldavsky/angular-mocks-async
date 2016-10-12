@@ -110,7 +110,7 @@
 	        
 	    };
 	    function matchData( data, d ) {
-	        
+
 	    	if (angular.isUndefined(data)) return true;
 	        if (data && angular.isFunction(data.test)) return data.test(d);
 	        if (data && angular.isFunction(data)) return data(d);
