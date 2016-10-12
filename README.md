@@ -3,7 +3,9 @@ AngularJS ngMockE2E Async
 <br><br>
 
 Angular 1.3.0 [![CircleCI](https://circleci.com/gh/amoldavsky/angular-mocks-async/tree/master.svg?style=shield)](https://circleci.com/gh/amoldavsky/angular-mocks-async)
+
 Angular 1.5.8 [![CircleCI](https://circleci.com/gh/amoldavsky/angular-mocks-async/tree/master.svg?style=shield)](https://circleci.com/gh/amoldavsky/angular-mocks-async)
+
 [![codecov](https://codecov.io/gh/amoldavsky/angular-mocks-async/branch/master/graph/badge.svg)](https://codecov.io/gh/amoldavsky/angular-mocks-async)
 <br><br>
 
@@ -20,8 +22,9 @@ TODO: add throgh bower
 ## Usage
 
 ```html
+<script src="angular.js"></script>
 <script src="angular-mocks.js"></script>
-<script src="angular-mocke-async.js"></script>
+<script src="//cdn.rawgit.com/amoldavsky/angular-mocks-async/master/src/angular-mocks-async.js"></script>
 ```
 
 The decorator exposes a new API
@@ -36,35 +39,44 @@ Here is an example for an HTTP GET
 
 	var app = ng.module('myApp', ['ngMockE2E', 'ngMockE2EAsync'])
 	
-	app.run( [ '$httpBackend', function( $httpBackend ) {
+	app.run( [ '$httpBackend', '$q', function( $httpBackend, $q ) {
 
 		$httpBackend.whenAsync(
-					'GET',
-					new RegExp( 'http://api.example.com/user/.+$' )
+			    'GET',
+			    new RegExp( 'http://api.example.com/user/.+$' )
 		).respond( function( method, url, data, config ) {
-			
-				var re = /.*\/user\/(\w+)/;
-				var userId = parseInt(url.replace(re, '$1'), 10);
-			
-				var response = $q.defer();
-			
-				setTimeout( function() {
 
-					var data = {
-						userId: userId
-					};
-					response.resolve( [ 200, "mock response", data ] );
+			var re = /.*\/user\/(\w+)/;
+			var userId = parseInt(url.replace(re, '$1'), 10);
 
-				}, 1000 );
-			
-				return response.promise;
-			
+			var response = $q.defer();
+
+			setTimeout( function() {
+
+			    var data = {
+				userId: userId
+			    };
+			    response.resolve( [ 200, "this is a mocked async GET response", "123" ] );
+
+			}, 1000 );
+
+			return response.promise;
+
+		});
+		
+		$http({
+			url: "http://api.example.com/user/103",
+			method: 'GET'
+		}).then( function( response ) {
+			alert( response.data );
 		});
 	}]);
 }(angular);
 ```
 You may use this API the same way for POST, PUT, UPDATE, and DELETE.
 
+## Demo
+[jsfiddle](https://jsfiddle.net/amoldavsky/omw8m23L/)
 
 ## Details
 
