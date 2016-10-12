@@ -20,15 +20,13 @@ ngMockE2EAsync decorates the $httpBackend by utilizing promises. Responses can n
 
 ## Install
 
-TODO: add throgh bower
-
-## Usage
-
 ```html
 <script src="angular.js"></script>
 <script src="angular-mocks.js"></script>
 <script src="//cdn.rawgit.com/amoldavsky/angular-mocks-async/master/src/angular-mocks-async.js"></script>
 ```
+
+## Usage
 
 The decorator exposes a new API
 ```javascript
