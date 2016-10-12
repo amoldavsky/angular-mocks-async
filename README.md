@@ -15,6 +15,9 @@ If you need to make an async operation ( such as working with WebSQL / IndexedDB
 
 ngMockE2EAsync decorates the $httpBackend by utilizing promises. Responses can now be in a form of a promise where the $httpBackend will original function will not be called until your promise has been resolved. Once resolved the original $httpBackend APIs will be called and things will flow their natural ways back to the caller.
 
+## Demo
+[jsfiddle](https://jsfiddle.net/amoldavsky/omw8m23L/)
+
 ## Install
 
 TODO: add throgh bower
@@ -74,9 +77,6 @@ Here is an example for an HTTP GET
 }(angular);
 ```
 You may use this API the same way for POST, PUT, UPDATE, and DELETE.
-
-## Demo
-[jsfiddle](https://jsfiddle.net/amoldavsky/omw8m23L/)
 
 ## Details
 
