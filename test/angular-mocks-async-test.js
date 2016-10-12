@@ -88,6 +88,8 @@
 
             app.run( [ '$httpBackend', '$q', function( $httpBackend, $q ) {
 
+                spyOn( $httpBackend, "whenAsync" ).andCallThrough();
+
                 // define our HTTP mock
                 $httpBackend.whenAsync(
                     'GET',
@@ -194,6 +196,8 @@
             ]);
 
             app.run( [ '$httpBackend', '$q', function( $httpBackend, $q ) {
+
+                spyOn( $httpBackend, "whenAsync" ).andCallThrough();
 
                 // define our HTTP mock
                 $httpBackend.whenAsync(

@@ -1,15 +1,17 @@
 {
   "name": "angular-mocks-async",
   "description": "AngularJS module to mock async HTTP",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Assaf Moldavsky",
   "keywords": [
     "angular",
     "angularjs",
     "mock",
+    "mocks",
     "http",
     "ngMockE2E",
-    "ngMock"
+    "ngMock",
+    "async"
   ],
   "scripts": {
     "karma": "./node_modules/karma/bin/karma start",
