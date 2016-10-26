@@ -1,0 +1,28 @@
+{
+  "name": "angular-mocks-async",
+  "description": "AngularJS module to mock async HTTP",
+  "main": "",
+  "authors": [
+    "Assaf Moldavsky"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "mock",
+    "mocks",
+    "http",
+    "ngMockE2E",
+    "ngMock",
+    "async"
+  ],
+  "homepage": "https://github.com/asarudick/angular-mocks-async",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
