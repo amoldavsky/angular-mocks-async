@@ -16,7 +16,7 @@
     "ngMock",
     "async"
   ],
-  "homepage": "https://github.com/asarudick/angular-mocks-async",
+  "homepage": "https://github.com/amoldavsky/angular-mocks-async",
   "private": true,
   "ignore": [
     "**/.*",
