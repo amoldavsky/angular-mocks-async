@@ -97,16 +97,16 @@ var should = chai.should;
         })();
 
         //------------------ test matchers:
-        it('test original data matcher', function (done) {
+        it( 'test original data matcher', function( done ) {
 
             var payload1 = {
                 a: 1
             };
             var payload2 = {
-                a: 1
+                2: 2
             };
 
-            inject(function ($httpBackend, $q, $http) {
+            inject( function( $httpBackend, $q, $http ) {
 
                 done;
 
@@ -149,7 +149,7 @@ var should = chai.should;
                     url: 'http://api.example.com/user/11',
                     data: payload1
                 }).then(
-                    function success(response) {
+                    function success( response ) {
 
                         expect( response ).to.be.a( 'object' );
                         expect( response ).to.have.property( 'data' );
@@ -161,7 +161,7 @@ var should = chai.should;
                         done();
 
                     },
-                    function error(response) {
+                    function error( response ) {
                         // mocked response had status 200 but the request failed...
                         done();
                     }
@@ -173,7 +173,7 @@ var should = chai.should;
                     url: 'http://api.example.com/user/11',
                     data: payload2
                 }).then(
-                    function success(response) {
+                    function success( response ) {
 
                         expect( response ).to.be.a( 'object' );
                         expect( response ).to.have.property( 'data' );
@@ -184,7 +184,7 @@ var should = chai.should;
 
                         done();
                     },
-                    function error(response) {
+                    function error( response ) {
                         // mocked response had status 200 but the request failed...
                         done();
                     }
@@ -194,22 +194,22 @@ var should = chai.should;
             });
         });
 
-        /* fix this test
-        it('test our data matcher', function (done) {
+        /* fix this test */
+        it( 'test our data matcher', function( done ) {
 
             var payload1 = {
                 a: 1
             };
             var payload2 = {
-                a: 1
+                b: 2
             };
 
-            inject(function ($httpBackend, $q, $http) {
+            inject( function( $httpBackend, $q, $http ) {
 
                 done;
 
                 // define our HTTP mock 1
-                $httpBackend.when(
+                $httpBackend.whenAsync(
                     'POST',
                     new RegExp( 'http://api.example.com/user/.+$' ),
                     payload1
@@ -226,7 +226,7 @@ var should = chai.should;
                 });
 
                 // define our HTTP mock 2
-                $httpBackend.when(
+                $httpBackend.whenAsync(
                     'POST',
                     new RegExp( 'http://api.example.com/user/.+$' ),
                     payload2
@@ -247,7 +247,7 @@ var should = chai.should;
                     url: 'http://api.example.com/user/11',
                     data: payload1
                 }).then(
-                    function success(response) {
+                    function success( response ) {
 
                         expect( response ).to.be.a( 'object' );
                         expect( response ).to.have.property( 'data' );
@@ -259,7 +259,7 @@ var should = chai.should;
                         done();
 
                     },
-                    function error(response) {
+                    function error( response ) {
                         // mocked response had status 200 but the request failed...
                         done();
                     }
@@ -291,7 +291,6 @@ var should = chai.should;
 
             });
         });
-         */
 
     });
 })( angular );

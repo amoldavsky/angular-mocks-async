@@ -166,7 +166,7 @@
 	            			// we ASSUME that when executed this function will return a promise
 	            			def.getPromise = response;
 	            			
-	            		} else if( reponse.then && ( typeof reponse.then === 'function' ) ) {
+	            		} else if( response.then && ( typeof response.then === 'function' ) ) {
 	            			
 	            			// we got a raw promise, we need to wrap it in a function
 	            			def.getPromise = function( method, url, data, headers, keys ) { 
