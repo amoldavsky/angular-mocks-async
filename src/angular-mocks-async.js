@@ -209,11 +209,11 @@
 		
 	}
 	
-	httpMock.config( function( $provide ) {
+	httpMock.config(['$provide',function( $provide ) {
 		
 		$provide.decorator( '$httpBackend', angular.mock.$HttpBackendAsyncDecorator );
 		
-	});
+	}]);
 	
 	
 })( angular );
