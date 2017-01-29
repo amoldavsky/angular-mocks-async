@@ -1,21 +1,21 @@
 machine:
   node:
     version:
-      6.3.0
+      6.9.4
 
 dependencies:
     pre:
       #- npm install -g karma
-      - npm install -g karma-cli
+      #- npm install -g karma-cli
     cache_directories:
       - ~/nvm
 
 test:
     override:
       - npm install
-      #- nohup bash -c "karma start &"
-      #- bash -c "karma start"
-      #- bash -c "./node_modules/karma-cli/bin/karma start &"
-      - ./node_modules/karma-cli/bin/karma start karma.conf.js --single-run
+      #- ./node_modules/karma-cli/bin/karma start karma.conf.js --single-run
+      - ./node_modules/gulp-cli/bin/gulp.js test-unminified
+      - ./node_modules/gulp-cli/bin/gulp.js test-minified
+
     post:
       - bash <(curl -s https://codecov.io/bash)
