@@ -80,6 +80,16 @@ You may use this API the same way for POST, PUT, UPDATE, and DELETE.
 
 The code adds a custom decorator function to the existing angular mock namespace which already hold similar decorator functions - angular.mock.$HttpBackendAsyncDecorator.
 
+## Developing & Testing
+
+gulpfile.js has the following tasks:
+```
+compile
+test-unminified
+test-minified
+```
+Please be sure to run these tests when making changes
+
 
 ## License
 MIT
