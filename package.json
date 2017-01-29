@@ -36,6 +36,8 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-mocha": "^1.2.0",
     "karma-coverage": "^1.1.1",
+    "gulp": "^3.9.1",
+    "gulp-karma-runner": "1.2.0",
     "codecov.io": "^0.1.6"
   }
 }
