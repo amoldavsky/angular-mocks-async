@@ -7,44 +7,42 @@
     gulp.task( "compile", function () {
         const compressor = require( "node-minify" );
 
-        return new Promise( function( resolve, reject ) {
+        let copyPromise = new Promise( function( resolve, reject ) {
 
+            /// copy sources
+            try {
 
-            let copyPromise = new Promise( function( resolve, reject ) {
+                const srcFile = 'src/angular-mocks-async.js';
+                const destFile = 'dist/angular-mocks-async.js';
 
-                /// copy sources
-                try {
+                fs.createReadStream(
+                    srcFile
+                ).pipe(fs.createWriteStream(
+                    destFile
+                ).on('finish', function () {
+                    resolve( destFile );
+                }));
 
-                    const srcFile = 'src/angular-mocks-async.js';
-                    const destFile = 'dist/angular-mocks-async.js';
+                console.log(`processed: ${destFile}`);
 
-                    fs.createReadStream(
-                        srcFile
-                    ).pipe(fs.createWriteStream(
-                        destFile
-                    ).on('finish', function () {
-                        resolve( destFile );
-                    }));
+            } catch (e) {
+                console.error(e);
+                throw e;
+            }
+        });
 
-                    console.log(`processed: ${destFile}`);
+        // minify all distributions
+        return copyPromise.then( function( compiledFile ) {
+            try {
 
-                } catch (e) {
-                    console.error(e);
-                    throw e;
-                }
-            });
+                // generate dest file
+                const destFile = (function( srcFile ) {
+                    let split = srcFile.split( "." );
+                    split.splice( split.length - 1, 0, "min" );
+                    return split.join( "." );
+                })( compiledFile );
 
-            // minify all distributions
-            return copyPromise.then( function( compiledFile ) {
-                try {
-
-                    // generate dest file
-                    const destFile = (function( srcFile ) {
-                        let split = srcFile.split( "." );
-                        split.splice( split.length - 1, 0, "min" );
-                        return split.join( "." );
-                    })( compiledFile );
-
+                return new Promise( function( resolve, reject ) {
                     compressor.minify({
                         compressor: 'gcc',
                         input: compiledFile,
@@ -54,20 +52,20 @@
                         callback: function( error ) {
                             if( error ) {
                                 console.error( error );
-                                throw error;
+                                reject( error );
                             }
 
                             console.log(`minified: ${destFile}`);
-
-                            resolve();
+                            resolve( destFile );
                         }
                     });
-                } catch( e ) {
-                    console.error( e );
-                    throw e;
-                }
-            });
+                });
+            } catch( e ) {
+                console.error( e );
+                throw e;
+            }
         });
+
     });
 
     gulp.task( "test-unminified", function () {
