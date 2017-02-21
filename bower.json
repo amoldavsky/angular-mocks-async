@@ -1,7 +1,8 @@
 {
   "name": "angular-mocks-async",
   "description": "AngularJS module to mock async HTTP",
-  "main": "./dist/angular-mocks-async.js",
+  "main": "./dist/angular-mocks-async.min.js",
+  "homepage": "https://github.com/amoldavsky/angular-mocks-async",
   "version": "1.0.2",
   "authors": [
     "Assaf Moldavsky"
@@ -17,8 +18,6 @@
     "ngMock",
     "async"
   ],
-  "homepage": "https://github.com/amoldavsky/angular-mocks-async",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
