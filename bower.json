@@ -1,7 +1,7 @@
 {
   "name": "angular-mocks-async",
   "description": "AngularJS module to mock async HTTP",
-  "main": "./src/angular-mocks-async.js",
+  "main": "./dist/angular-mocks-async.js",
   "authors": [
     "Assaf Moldavsky"
   ],
