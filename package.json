@@ -3,6 +3,8 @@
   "description": "AngularJS module to mock async HTTP",
   "version": "1.0.1",
   "author": "Assaf Moldavsky",
+  "repository": "https://github.com/amoldavsky/angular-mocks-async",
+  "license": "MIT",
   "keywords": [
     "angular",
     "angularjs",
