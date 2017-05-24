@@ -6,8 +6,8 @@ AngularJS ngMockE2E Async
 [![codecov](https://codecov.io/gh/amoldavsky/angular-mocks-async/branch/master/graph/badge.svg)](https://codecov.io/gh/amoldavsky/angular-mocks-async)
 <br><br>
 Tested Angular versions:
-
 1.3.17, 1.4.0, 1.5.0, 1.6.0
+<br><br>
 
 
 An abstraction on top of ngMockE2E to support async calls using promises. 
