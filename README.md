@@ -2,7 +2,7 @@
 AngularJS ngMockE2E Async
 <br><br>
 
-Angular 1.3.0 [![CircleCI](https://circleci.com/gh/amoldavsky/angular-mocks-async/tree/master.svg?style=shield)](https://circleci.com/gh/amoldavsky/angular-mocks-async)
+Angular 1.3.17 [![CircleCI](https://circleci.com/gh/amoldavsky/angular-mocks-async/tree/master.svg?style=shield)](https://circleci.com/gh/amoldavsky/angular-mocks-async)
 
 Angular 1.5.8 [![CircleCI](https://circleci.com/gh/amoldavsky/angular-mocks-async/tree/master.svg?style=shield)](https://circleci.com/gh/amoldavsky/angular-mocks-async)
 
