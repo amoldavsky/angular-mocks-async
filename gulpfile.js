@@ -130,6 +130,37 @@
         );
     });
 
+    gulp.task( "test-with-angular-1.3.17", function () {
+        gulp.src([
+            'test/angular-1.3.17/angular.js',
+            'test/angular-1.3.17/angular-mocks.js',
+            'dist/angular-mocks-async.min.js',
+            'test/angular-mocks-async-internal-tests.js',
+            'test/angular-mocks-async-test.js'
+        ], {"read": false}).pipe(
+            karma.server({
+                singleRun: true,
+                autoWatch: true,
+                concurrency: Infinity,
+                port: 9876,
+
+                frameworks: [ "mocha", "chai" ],
+                browsers: [ "Chrome" ],
+                basePath: "",
+                exclude: [],
+                preprocessors: {
+                    'src/**/*.js': ['coverage']
+                },
+                reporters: [ 'spec', 'coverage' ],
+                coverageReporter: {
+                    type : 'lcov',
+                    dir : 'coverage/'
+                },
+                colors: true
+            })
+        );
+    });
+
     gulp.task( "test-with-angular-1.3.0", function () {
         gulp.src([
             'test/angular-1.3.0/angular.js',
