@@ -1,39 +1,43 @@
 (function( require ) {
 
     const gulp = require( "gulp" );
+    // const gulpSequence = require('run-sequence').use( gulp );
     const karma = require( "gulp-karma-runner" );
     const fs = require('fs');
 
-    const karmaServer = karma.server({
-        singleRun: true,
-        autoWatch: true,
-        concurrency: Infinity,
-        port: 9876,
+    function createKarmaServer() {
+        return karma.server({
+            singleRun: true,
+            autoWatch: true,
+            concurrency: Infinity,
+            port: 9876,
 
-        frameworks: [ "mocha", "chai" ],
-        browsers: [ "Chrome" ],
-        basePath: "",
-        exclude: [],
-        preprocessors: {
-            'src/**/*.js': ['coverage']
-        },
-        reporters: [ 'spec', 'coverage' ],
-        coverageReporter: {
-            type : 'lcov',
-            dir : 'coverage/'
-        },
-        colors: true
-    });
+            frameworks: [ "mocha", "chai" ],
+            browsers: [ "Chrome" ],
+            basePath: "",
+            exclude: [],
+            preprocessors: {
+                'src/**/*.js': ['coverage']
+            },
+            reporters: [ 'spec', 'coverage' ],
+            coverageReporter: {
+                type : 'lcov',
+                dir : 'coverage/'
+            },
+            colors: true
+        });
+    }
 
-    function gulpTestRun({ angularVersion = "1.6.0" }) {
+    function gulpTestRun( angularVersion = "1.6.0", isMinified = false ) {
+        const ext  = isMinified ? '.min' : '';
         return gulp.src([
                 `test/angular-${angularVersion}/angular.js`,
                 `test/angular-${angularVersion}/angular-mocks.js`,
-                'dist/angular-mocks-async.min.js',
+                `dist/angular-mocks-async${ext}.js`,
                 'test/angular-mocks-async-internal-tests.js',
                 'test/angular-mocks-async-test.js'
         ], { "read": false })
-        .pipe( karmaServer );
+        .pipe( createKarmaServer() );
     }
 
     gulp.task( "compile", function () {
@@ -100,75 +104,37 @@
 
     });
 
-    gulp.task( "test-unminified", function () {
-        gulp.src([
-            'test/angular-1.5.8/angular.js',
-            'test/angular-1.5.8/angular-mocks.js',
-            'dist/angular-mocks-async.js',
-            'test/angular-mocks-async-internal-tests.js',
-            'test/angular-mocks-async-test.js'
-        ], {"read": false}).pipe(
-            karma.server({
-                singleRun: true,
-                autoWatch: true,
-                concurrency: Infinity,
-                port: 9876,
+    gulp.task( "test-with-angular-1.6.0", [ "test-with-angular-1.6.0-minified", "test-with-angular-1.6.0-unminified" ]);
+    gulp.task( "test-with-angular-1.6.0-unminified", () => gulpTestRun( "1.6.0" ) );
+    gulp.task( "test-with-angular-1.6.0-minified", () => gulpTestRun( "1.6.0", true ) );
 
-                frameworks: [ "mocha", "chai" ],
-                browsers: [ "Chrome" ],
-                basePath: "",
-                exclude: [],
-                preprocessors: {
-                    'src/**/*.js': ['coverage']
-                },
-                reporters: [ 'spec', 'coverage' ],
-                coverageReporter: {
-                    type : 'lcov',
-                    dir : 'coverage/'
-                },
-                colors: true
-            })
-        );
-    });
+    gulp.task( "test-with-angular-1.5.0", [ "test-with-angular-1.5.0-minified", "test-with-angular-1.5.0-unminified" ]);
+    gulp.task( "test-with-angular-1.5.0-unminified", () => gulpTestRun( "1.5.0" ) );
+    gulp.task( "test-with-angular-1.5.0-minified", () => gulpTestRun( "1.5.0", true ) );
 
-    gulp.task( "test-minified", function () {
-        gulp.src([
-            'test/angular-1.5.8/angular.js',
-            'test/angular-1.5.8/angular-mocks.js',
-            'dist/angular-mocks-async.min.js',
-            'test/angular-mocks-async-internal-tests.js',
-            'test/angular-mocks-async-test.js'
-        ], {"read": false}).pipe(
-            karma.server({
-                singleRun: true,
-                autoWatch: true,
-                concurrency: Infinity,
-                port: 9876,
+    gulp.task( "test-with-angular-1.4.0", [ "test-with-angular-1.4.0-minified", "test-with-angular-1.4.0-unminified" ]);
+    gulp.task( "test-with-angular-1.4.0-unminified", () => gulpTestRun( "1.4.0" ) );
+    gulp.task( "test-with-angular-1.4.0-minified", () => gulpTestRun( "1.4.0", true ) );
 
-                frameworks: [ "mocha", "chai" ],
-                browsers: [ "Chrome" ],
-                basePath: "",
-                exclude: [],
-                preprocessors: {
-                    'src/**/*.js': ['coverage']
-                },
-                reporters: [ 'spec', 'coverage' ],
-                coverageReporter: {
-                    type : 'lcov',
-                    dir : 'coverage/'
-                },
-                colors: true
-            })
-        );
-    });
+    gulp.task( "test-with-angular-1.3.17", [ "test-with-angular-1.3.17-minified", "test-with-angular-1.3.17-unminified" ]);
+    gulp.task( "test-with-angular-1.3.17-minified", () => gulpTestRun( "1.3.17" ) );
+    gulp.task( "test-with-angular-1.3.17-unminified", () => gulpTestRun( "1.3.17", true ) );
 
-    gulp.task( "test-with-angular-1.6.0", () => gulpTestRun("1.6.0") );
+    function runSequential( tasks ) {
+        if( !tasks || tasks.length <= 0 ) return;
 
-    gulp.task( "test-with-angular-1.5.0", () => gulpTestRun("1.5.0") );
-
-    gulp.task( "test-with-angular-1.4.0", () => gulpTestRun("1.4.0") );
-
-    gulp.task( "test-with-angular-1.3.17", () => gulpTestRun("1.3.17") );
+        const task = tasks[0];
+        gulp.start( task, () => {
+            console.log( `${task} finished` );
+            runSequential( tasks.slice(1) );
+        } );
+    }
+    gulp.task( "test-with-angular-all-versions", () => runSequential([
+        "test-with-angular-1.3.17",
+        "test-with-angular-1.4.0",
+        "test-with-angular-1.5.0",
+        "test-with-angular-1.6.0",
+    ]));
 
     gulp.task( "test-with-angular-1.3.0", () => gulpTestRun("1.3.0") );
 
