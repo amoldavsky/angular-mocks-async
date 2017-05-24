@@ -1,7 +1,7 @@
 machine:
   node:
     version:
-      6.9.4
+      7.10.0
 
 dependencies:
     pre:
@@ -14,9 +14,7 @@ test:
     override:
       - npm install
       #- ./node_modules/karma-cli/bin/karma start karma.conf.js --single-run
-      - ./node_modules/gulp-cli/bin/gulp.js test-unminified
-      - ./node_modules/gulp-cli/bin/gulp.js test-minified
-      - ./node_modules/gulp-cli/bin/gulp.js test-with-angular-1.3.17
+      - ./node_modules/gulp-cli/bin/gulp.js test-with-angular-all-versions
 
     post:
       - bash <(curl -s https://codecov.io/bash)
