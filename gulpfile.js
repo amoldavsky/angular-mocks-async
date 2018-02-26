@@ -40,7 +40,7 @@
         .pipe( createKarmaServer() );
     }
 
-    gulp.task( "compile", function () {
+    gulp.task( "dist", function () {
         const compressor = require( "node-minify" );
 
         let copyPromise = new Promise( function( resolve, reject ) {

@@ -31,7 +31,7 @@
 			
 			var d = match( method, url, data, headers );
 	        if ( !d || d.passThrough || !d.getPromise ) {
-	            return $delegate.call(this, method, url, data, callback, headers);
+	            return $delegate.call(this, method, url, data, callback, headers, timeout, withCredentials );
 	        }
 	        
 	        if( !d.getPromise || ! typeof d.getPromise === 'function' ) {
