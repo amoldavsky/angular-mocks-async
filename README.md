@@ -5,8 +5,12 @@ AngularJS ngMockE2E Async
 [![CircleCI](https://circleci.com/gh/amoldavsky/angular-mocks-async/tree/master.svg?style=shield)](https://circleci.com/gh/amoldavsky/angular-mocks-async)
 [![codecov](https://codecov.io/gh/amoldavsky/angular-mocks-async/branch/master/graph/badge.svg)](https://codecov.io/gh/amoldavsky/angular-mocks-async)
 <br><br>
-Tested Angular versions:
-1.3.17, 1.4.0, 1.5.0, 1.6.0
+Tested for:
+
+![npm](https://img.shields.io/badge/angular-1.3.17-blue.svg)
+![npm](https://img.shields.io/badge/angular-1.4.0-blue.svg)
+![npm](https://img.shields.io/badge/angular-1.5.0-blue.svg)
+![npm](https://img.shields.io/badge/angular-1.6.0-blue.svg)
 <br><br>
 
 
@@ -54,17 +58,20 @@ Here is an example for an HTTP GET
 			var response = $q.defer();
 
 			setTimeout( function() {
-
 			    var data = {
 				userId: userId
 			    };
 			    response.resolve( [ 200, "this is a mocked async GET response", "123" ] );
-
 			}, 1000 );
 
 			return response.promise;
 
 		});
+		$httpBackend.whenGET(/.*/).passThrough();
+	        $httpBackend.whenPOST(/.*/).passThrough();
+	        $httpBackend.whenPUT(/.*/).passThrough();
+	        $httpBackend.whenJSONP(/.*/).passThrough();
+	        $httpBackend.whenDELETE(/.*/).passThrough();
 		
 		$http({
 			url: "http://api.example.com/user/103",
@@ -85,7 +92,7 @@ The code adds a custom decorator function to the existing angular mock namespace
 
 gulpfile.js has the following tasks:
 ```
-compile
+dist
 test-unminified
 test-minified
 ```
