@@ -25,6 +25,12 @@ ngMockE2EAsync decorates the $httpBackend by utilizing promises. Responses can n
 
 ## Install
 
+#### NPM
+```
+npm install angular-mocks-async
+```
+
+#### HTML
 ```html
 <script src="angular.js"></script>
 <script src="angular-mocks.js"></script>
